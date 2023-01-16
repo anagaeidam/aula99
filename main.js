@@ -1,70 +1,66 @@
 var SpeechRecognition = window.webkitSpeechRecognition;
+ 
 var recognition = new SpeechRecognition();
-function start() {
-    textbox.innerHTML = "";
-    recognition.start();
-}
-recognition.onresult = function(event) {
-    console.log(event);
-
-    var Content = event.results[0] [0].transcript;
-    console.log(Content);
-
-    document.getElementById("textbox").innerHTML = Content;
-}
-var SpeechRecognition = window.webkitSpeechRecognition;
-var recognition = new SpeechRecognition();
+ 
 var Textbox = document.getElementById("textbox");
-
+ 
 function start()
 {
     Textbox.innerHTML = "";
     recognition.start();
 }
+ 
 recognition.onresult = function(event) {
-    console.log(event);
-
-    var Content = event.results[0][0].transcript;
-
+ 
+ console.log(event);
+ 
+var Content = event.results[0][0].transcript;
+ 
     Textbox.innerHTML = Content;
     console.log(Content);
-    if(Content =="tire minha selfie")
-    {
-        console.log("tirand selfie --- ");
+      if(Content =="tire minha selfie")
+      {
+        console.log("tirando selfie --- ");
         speak();
-    }
+      }
 }
-function speak() {
+ 
+ 
+function speak(){
     var synth = window.speechSynthesis;
-
+ 
     speak_data = "Tirando sua selfie em 5 segundos";
-
-    var utterThis = new SpeechSynthesisUtterance (speak_data);
-
+ 
+    var utterThis = new SpeechSynthesisUtterance(speak_data);
+ 
     synth.speak(utterThis);
-
-    WebKitCSSMatrix.attach(camera);
-
+ 
+    Webcam.attach(camera);
+ 
     setTimeout(function()
     {
         take_selfie();
-        SVGAElement();
+        save();
     }, 5000);
 }
-
+ 
+ 
 camera = document.getElementById("camera");
-Webcam.set ({
+Webcam.set({
     width:360,
     height:250,
-    image_format:'jpeg',
+    image_format : 'jpeg',
     jpeg_quality:90
 });
+ 
 function take_selfie()
 {
-    Webcam.snap (function(data_uri){
-        document.getElementById("result").innerHTML = '<img id = "selfie_image" src"'+data_uri+'"/>';
+    Webcam.snap(function(data_uri) {
+        document.getElementById("result").innerHTML = '<img id="selfie_image" src="'+data_uri+'"/>';
     });
 }
+ 
+ 
 function save()
 {
   link = document.getElementById("link");
